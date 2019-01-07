@@ -208,7 +208,7 @@ class TokuOplogTool : public Tool {
                     if (o.hasElement("ref")) {
                         OID oid = o["ref"].OID();
                         long long seq = 0;
-                        for (shared_ptr<DBClientCursor> refsCursor = r.getOplogRefsCursor(oid); refsCursor->more(); ) {
+                        for (boost::shared_ptr<DBClientCursor> refsCursor = r.getOplogRefsCursor(oid); refsCursor->more(); ) {
                             BSONObj refsObj = refsCursor->nextSafe();
                             if (refsObj.getFieldDotted("_id.oid").OID() != oid) {
                                 break;
